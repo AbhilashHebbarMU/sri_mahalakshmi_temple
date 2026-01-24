@@ -28,7 +28,7 @@ temple/
 ├── banner.html
 ├── contact.html
 ├── styles.css      # Custom styles (hero, cards, lightbox, etc.)
-├── main.js         # Smooth scroll, lightbox, contact form, carousel
+├── main.js         # Smooth scroll, lightbox (swipe + keyboard), contact form, carousel
 ├── README.md
 └── images/
     ├── front_view.jpeg
@@ -50,11 +50,26 @@ temple/
 
 ## Features
 
-- **Hero:** Full-bleed `front_view.jpeg` background with overlaid welcome text and soft shadow for readability.
-- **Lightbox:** Gallery images open in a lightbox (prev/next, close) without extra libraries.
-- **Contact form:** Validation and submit; uses `{{CONTACT_ENDPOINT}}` or mailto fallback.
-- **Carousel:** Bootstrap carousel for testimonials on the home page.
-- **View-source safeguards (index.html):** Right-click, Ctrl+U, F12, Ctrl+Shift+I/J/C, and Ctrl+S are disabled.
+### Navigation & UX
+- **Smooth scroll** — In-page anchor links (`#events`, `#about`, `#contact`) scroll smoothly.
+- **Hero (Home)** — Full-bleed `front_view.jpeg` background, semi-transparent overlay, and text shadow so the welcome block stays readable.
+
+### Gallery lightbox (`gallery.html`)
+- **Click to open** — Thumbnails with `data-lightbox` open in a lightbox (no extra libraries).
+- **Prev / Next** — On-screen arrows to move between images across all sections (Navaratri, Special Events, Daily Rituals).
+- **Touch swipe** — Swipe **left-to-right** = next image; **right-to-left** = previous (50px threshold).
+- **Keyboard** — `←` previous, `→` next, `Escape` close (when lightbox is open).
+- **Close** — × button or click on the dark backdrop.
+- **Image source** — Uses `data-full`, or the `<a href="...">`, or the inner `<img src>`.
+
+### Contact
+- **Contact form** — Client-side validation; submit to `{{CONTACT_ENDPOINT}}` or mailto fallback; thanks modal on success.
+
+### Home page
+- **Testimonials carousel** — Bootstrap carousel, 5s interval, pause on hover.
+
+### View-source safeguards (`index.html` only)
+- Right-click (context menu), `Ctrl+U`, `F12`, `Ctrl+Shift+I` / `J` / `C`, `Ctrl+S`, text selection, and drag-and-drop are disabled.
 
 ---
 

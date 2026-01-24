@@ -1,0 +1,226 @@
+/* Core styling */
+:root {
+  --primary: #b3432a;
+  --secondary: #f4e3cf;
+  --accent: #f0c04f;
+  --text: #2b1a12;
+  --muted: #6b5b53;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: #fffaf5;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+}
+
+a:hover {
+  color: #8a3322;
+}
+
+.navbar-brand span {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+}
+
+.nav-actions .btn,
+.nav-actions .icon-btn {
+  border-radius: 10px;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+  color: #555;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.nav-actions .btn-donate {
+  background: linear-gradient(135deg, #ffbd6f, #f59c1a);
+  border: none;
+  color: #2b1a12;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  box-shadow: 0 10px 20px rgba(245, 156, 26, 0.25);
+}
+
+.hero {
+  position: relative;
+  background: url("images/front_view.jpeg") center no-repeat;
+  background-size: cover;
+  background-color: #1a1512;
+  color: #fff;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .btn {
+  margin-right: 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero p.lead,
+.hero .text-uppercase {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero p.lead {
+  color: #f5efe8;
+  max-width: 520px;
+}
+
+.section-title {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.card img {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.events .card-title {
+  color: var(--primary);
+}
+
+.contact-strip {
+  background: var(--secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+  background: #1f120d;
+  color: #f5ebe3;
+}
+
+.footer a {
+  color: #f5ebe3;
+}
+
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1055;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-backdrop.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+.lightbox-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: -18px;
+  right: -18px;
+  transform: none;
+}
+
+.lightbox-prev {
+  left: -54px;
+}
+
+.lightbox-next {
+  right: -54px;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 4rem 0;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+}
+

@@ -30,21 +30,48 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   let images = [];
   let index = 0;
 
+  function getImageUrl(el) {
+    return el?.dataset?.full || el?.href || el?.querySelector?.("img")?.src || "";
+  }
+
   const open = (idx) => {
-    index = idx;
-    imgEl.src = images[index].dataset.full || images[index].src;
+    if (images.length === 0) return;
+    index = ((idx % images.length) + images.length) % images.length;
+    imgEl.src = getImageUrl(images[index]);
     lightbox.classList.add("show");
   };
 
   const close = () => lightbox.classList.remove("show");
-  const showPrev = () => open((index - 1 + images.length) % images.length);
-  const showNext = () => open((index + 1) % images.length);
+  const showPrev = () => open(index - 1);
+  const showNext = () => open(index + 1);
 
   closeBtn.addEventListener("click", close);
-  prevBtn.addEventListener("click", showPrev);
-  nextBtn.addEventListener("click", showNext);
+  prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+  nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) close();
+  });
+
+  // Touch swipe: left-to-right = next, right-to-left = prev
+  let touchStartX = 0;
+  lightbox.addEventListener("touchstart", (e) => {
+    if (e.touches?.[0]) touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener("touchend", (e) => {
+    const t = e.changedTouches?.[0];
+    if (!t || !lightbox.classList.contains("show")) return;
+    const dx = t.clientX - touchStartX;
+    const min = 50;
+    if (dx > min) showNext();      // swipe left-to-right = next
+    else if (dx < -min) showPrev(); // swipe right-to-left = prev
+  }, { passive: true });
+
+  // Keyboard: ArrowLeft=prev, ArrowRight=next, Escape=close
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("show")) return;
+    if (e.key === "Escape") { close(); e.preventDefault(); return; }
+    if (e.key === "ArrowLeft") { showPrev(); e.preventDefault(); return; }
+    if (e.key === "ArrowRight") { showNext(); e.preventDefault(); return; }
   });
 
   const thumbs = document.querySelectorAll("[data-lightbox]");

@@ -30,6 +30,8 @@ temple/
 ├── styles.css      # Custom styles (hero, cards, lightbox, etc.)
 ├── main.js         # Smooth scroll, lightbox (swipe + keyboard), contact form, carousel
 ├── README.md
+├── pdf/            # Static PDFs used for downloads
+│   └── MSME_2025(1).pdf
 └── images/
     ├── front_view.jpeg
     ├── side_view.jpeg
@@ -66,6 +68,8 @@ temple/
 - **Contact form** — Client-side validation; submit to `{{CONTACT_ENDPOINT}}` or mailto fallback; thanks modal on success.
 
 ### Home page
+- **Upcoming events PDFs** — Each event card has a **Download PDF** link that serves a static file from the `pdf/` folder (e.g. `pdf/MSME_2025(1).pdf`).
+- **Live Events** — Embedded YouTube video shown under *Live Events* (uses `youtube-nocookie.com` embed).
 - **Testimonials carousel** — Bootstrap carousel, 5s interval, pause on hover.
 
 ### View-source safeguards (`index.html` only)
